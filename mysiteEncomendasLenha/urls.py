@@ -15,7 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from GestorLenha.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('login/', login_view),
+    path('logout/', logout_view),
+    path('encomendas/',encomendas_view),
+    path('encomendas/add',encomendas_adicionar_view),
+    path('encomendas/edit',encomendas_edit_view)
 ]
