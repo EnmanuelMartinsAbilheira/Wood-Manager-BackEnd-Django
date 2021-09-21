@@ -21,7 +21,7 @@ class UserViewSet(viewsets.ModelViewSet):
                """
                queryset = User.objects.all().order_by('-date_joined')
                serializer_class = UserSerializer
-               permission_classes = [permissions.IsAuthenticated]
+               permissizon_classes = [permissions.IsAuthenticated]
 
 
 class GroupViewSet(viewsets.ModelViewSet):
