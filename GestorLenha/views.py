@@ -1,38 +1,42 @@
 from django.shortcuts import render
 from django.core import serializers
 from django.http import HttpResponse
-from rest_framework import viewsets,permissions
+from rest_framework import viewsets, permissions
 from GestorLenha.models import *
 from GestorLenha.serializers import *
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
-def HttpResponse_json(data):
-               try:
-                              data = serializers.serialize('json', data)
-               except:
-                              pass
-               return HttpResponse(data, content_type='application/json')
+@api_view(['GET'])
+def current_user(request):
+    """
+    Determine the current user by their token, and return their data
+    """
 
-
+    serializer = UserSerializer(request.user, 
+               context={'request': request})
+    return Response(serializer.data)
 
 
 class UserViewSet(viewsets.ModelViewSet):
-               """
-               API endpoint that allows users to be viewed or edited.
-               """
-               queryset = User.objects.all().order_by('-date_joined')
-               serializer_class = UserSerializer
-               permissizon_classes = [permissions.IsAuthenticated]
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    permissizon_classes = [permissions.IsAuthenticated]
 
 
 class GroupViewSet(viewsets.ModelViewSet):
-               """
-               API endpoint that allows groups to be viewed or edited.
-               """
-               queryset = Group.objects.all()
-               serializer_class = GroupSerializer
-               permission_classes = [permissions.IsAuthenticated]
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
 
 class encomendas_view(viewsets.ModelViewSet):
-               queryset = Encomenda.objects.all()
-               serializer_class = EncomendaSerializer
-               permission_classes = [permissions.IsAuthenticated]
+    queryset = Encomenda.objects.all()
+    serializer_class = EncomendaSerializer
+    permission_classes = [permissions.IsAuthenticated]

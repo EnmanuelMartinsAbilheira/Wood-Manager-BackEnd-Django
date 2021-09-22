@@ -17,11 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from GestorLenha.views import *
 from rest_framework import routers
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-    TokenVerifyView
-)
+from rest_framework_jwt.views import obtain_jwt_token
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
@@ -32,7 +28,7 @@ urlpatterns = [
     path('',include(router.urls)),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
+    #https://medium.com/@dakota.lillie/django-react-jwt-authentication-5015ee00ef9a
+    path('api/login/', obtain_jwt_token),
+    path('api/current_user/', current_user)
 ]
