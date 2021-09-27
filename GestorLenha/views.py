@@ -39,3 +39,9 @@ class encomendas_view(viewsets.ModelViewSet):
     queryset = Encomenda.objects.all()
     serializer_class = EncomendaSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+class config_view(viewsets.ModelViewSet):
+    queryset = Config.objects.all()
+    serializer_class = ConfigSerializer
+    permission_classes = [permissions.IsAuthenticated]

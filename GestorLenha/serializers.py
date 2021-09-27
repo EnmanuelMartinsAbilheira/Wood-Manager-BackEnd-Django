@@ -52,3 +52,11 @@ class EncomendaSerializer(serializers.HyperlinkedModelSerializer):
             'morada_entrega',
             'estado'
         ]
+
+
+class ConfigSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Config
+        fields = [
+            'preco_tonelada'
+        ]
