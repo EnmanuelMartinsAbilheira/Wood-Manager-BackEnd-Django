@@ -4,7 +4,7 @@ from django.conf import settings
 
 
 class Encomenda(models.Model):
-    data_entrega = models.DateTimeField('Data de Entrega')
+    data_entrega = models.DateField('Data de Entrega')
     quantidade = models.IntegerField()
     cliente = models.ForeignKey(
         settings.AUTH_USER_MODEL,
@@ -12,7 +12,7 @@ class Encomenda(models.Model):
     )
     preco = models.FloatField()
     morada_entrega = models.CharField(max_length=200)
-    estado = models.CharField(max_length=200)
+    estado = models.CharField(max_length=200, default="novo")
 
 
 class Config(models.Model):

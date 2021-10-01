@@ -38,7 +38,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 class encomendas_view(viewsets.ModelViewSet):
     queryset = Encomenda.objects.all()
     serializer_class = EncomendaSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
 
 class config_view(viewsets.ModelViewSet):
