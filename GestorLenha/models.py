@@ -12,7 +12,7 @@ class Encomenda(models.Model):
     )
     preco = models.FloatField()
     morada_entrega = models.CharField(max_length=200)
-    estado = models.CharField(max_length=200, default="novo")
+    estado = models.CharField(max_length=200, default="new")
 
 
 class Config(models.Model):

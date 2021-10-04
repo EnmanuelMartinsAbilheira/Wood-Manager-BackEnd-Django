@@ -6,7 +6,7 @@ from GestorLenha.models import *
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'groups']
+        fields = ['url', 'username', 'email', 'groups', 'pk']
 
 
 class UserSerializerWithToken(serializers.ModelSerializer):

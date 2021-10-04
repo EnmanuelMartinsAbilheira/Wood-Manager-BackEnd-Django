@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.core import serializers
 from django.http import HttpResponse
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, generics
 from GestorLenha.models import *
 from GestorLenha.serializers import *
 from rest_framework.decorators import api_view
@@ -34,11 +34,11 @@ class GroupViewSet(viewsets.ModelViewSet):
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-
 class encomendas_view(viewsets.ModelViewSet):
     queryset = Encomenda.objects.all()
     serializer_class = EncomendaSerializer
     permission_classes = [permissions.AllowAny]
+    filter_fields = ["cliente"]
 
 
 class config_view(viewsets.ModelViewSet):

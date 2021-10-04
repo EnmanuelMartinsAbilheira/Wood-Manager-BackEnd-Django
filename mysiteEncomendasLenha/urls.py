@@ -19,17 +19,18 @@ from GestorLenha.views import *
 from rest_framework import routers
 from rest_framework_jwt.views import obtain_jwt_token
 
-router = routers.DefaultRouter()
-router.register(r'users', UserViewSet)
-router.register(r'groups', GroupViewSet)
-router.register(r'encomenda',encomendas_view)
-router.register(r'config', config_view)
+def mainrouter():
+    router = routers.DefaultRouter()
+    router.register(r'users', UserViewSet)
+    router.register(r'groups', GroupViewSet)
+    router.register(r'config', config_view)
+    router.register(r'encomendas', encomendas_view)
+    return router
 
 urlpatterns = [
-    path('api/',include(router.urls)),
+    path('api/',include(mainrouter().urls)),
     path('admin/', admin.site.urls),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),    
     path('login/', obtain_jwt_token),
     path('api/current_user/', current_user)
 ]
