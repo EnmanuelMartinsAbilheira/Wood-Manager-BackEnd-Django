@@ -50,7 +50,8 @@ class EncomendaSerializer(serializers.HyperlinkedModelSerializer):
             'cliente',
             'preco',
             'morada_entrega',
-            'estado'
+            'estado',
+            'pk'
         ]
 
 
