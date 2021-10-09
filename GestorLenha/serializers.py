@@ -54,6 +54,10 @@ class EncomendaSerializer(serializers.HyperlinkedModelSerializer):
             'pk'
         ]
 
+    def __init__(self, *args, **kwargs):
+        kwargs['partial'] = True
+        super(EncomendaSerializer, self).__init__(*args, **kwargs)
+
 
 class ConfigSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
