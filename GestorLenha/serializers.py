@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
+from rest_framework.fields import ReadOnlyField
 from GestorLenha.models import *
 
 
@@ -42,12 +43,14 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class EncomendaSerializer(serializers.HyperlinkedModelSerializer):
+    username = ReadOnlyField(source="cliente.username")
     class Meta:
         model = Encomenda
         fields = [
             'data_entrega',
             'quantidade',
-            'cliente',
+            #'cliente',
+            'username',
             'preco',
             'morada_entrega',
             'estado',
