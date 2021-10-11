@@ -51,7 +51,8 @@ class EncomendaSerializer(serializers.HyperlinkedModelSerializer):
             'preco',
             'morada_entrega',
             'estado',
-            'pk'
+            'pk',
+            'is_deleted'
         ]
 
     def __init__(self, *args, **kwargs):

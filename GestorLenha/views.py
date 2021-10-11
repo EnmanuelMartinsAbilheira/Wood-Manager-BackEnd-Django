@@ -38,7 +38,7 @@ class encomendas_view(viewsets.ModelViewSet):
     queryset = Encomenda.objects.all()
     serializer_class = EncomendaSerializer
     permission_classes = [permissions.AllowAny]
-    filter_fields = ["cliente"]
+    filter_fields = ["cliente", "estado", "is_deleted"]
 
 
 class config_view(viewsets.ModelViewSet):
