@@ -23,8 +23,14 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
-    permissizon_classes = [permissions.IsAuthenticated]
-
+    
+    def get_permissions(self):
+        """Set custom permissions for each action."""
+        if self.action in ['update', 'partial_update', 'destroy', 'list']:
+            self.permission_classes = [permissions.IsAuthenticated, ]
+        elif self.action in ['create']:
+            self.permission_classes = [permissions.AllowAny, ]
+        return super().get_permissions()
 
 class GroupViewSet(viewsets.ModelViewSet):
     """

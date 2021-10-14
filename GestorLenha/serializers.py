@@ -7,8 +7,13 @@ from GestorLenha.models import *
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ['url', 'username', 'email', 'groups', 'pk']
+        fields = ['url', 'username', 'email', 'groups', 'pk', 'password']
 
+    def create(self, validated_data):
+        user = super(UserSerializer,self).create(validated_data)
+        user.set_password(validated_data['password'])
+        user.save()
+        return user
 
 class UserSerializerWithToken(serializers.ModelSerializer):
 
