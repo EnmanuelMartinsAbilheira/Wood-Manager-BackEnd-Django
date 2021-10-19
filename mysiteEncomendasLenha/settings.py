@@ -81,30 +81,30 @@ WSGI_APPLICATION = 'mysiteEncomendasLenha.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 #Local Config:
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'lenha',
-        'USER': 'postgres',
-        'PASSWORD': '1911eelm2000',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+if DEBUG==True:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'lenha',
+            'USER': 'postgres',
+            'PASSWORD': '1911eelm2000',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
     }
-}
-'''
-#Heroku config:
-#https://data.heroku.com/datastores/cf2d24a6-686a-4abf-8a93-d90270848fb5#administration
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd2v8ja1d04osni',
-        'USER': 'ismhuxmcukgqnw',
-        'PASSWORD': '5aa7b021bdf47e0ebfcb8189d904ba334cf5df2983440beaae63a5bb00ed30f5',
-        'HOST': 'ec2-52-209-171-51.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
+else:
+    #Heroku config:
+    #https://data.heroku.com/datastores/cf2d24a6-686a-4abf-8a93-d90270848fb5#administration
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'd2v8ja1d04osni',
+            'USER': 'ismhuxmcukgqnw',
+            'PASSWORD': '5aa7b021bdf47e0ebfcb8189d904ba334cf5df2983440beaae63a5bb00ed30f5',
+            'HOST': 'ec2-52-209-171-51.eu-west-1.compute.amazonaws.com',
+            'PORT': '5432',
+        }
     }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
